@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WallFit - Wallpaper Resizer</title>
+    <meta name="description" content="Resize and crop wallpapers and social images to perfect dimensions in one click." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/theme/WallFit-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/theme/WallFit-180.png" />
+
+    <!-- Website Social Preview (Open Graph) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="WallFit - Wallpaper Resizer" />
+    <meta property="og:description" content="Resize and crop wallpapers and social images to perfect dimensions in one click." />
+    <meta property="og:image" content="https://nagenxp.github.io/WallFit/assets/theme/WallFit.png" />
+    <meta property="og:url" content="https://nagenxp.github.io/WallFit/" />
+
+    <!-- Twitter Social Preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WallFit - Wallpaper Resizer" />
+    <meta name="twitter:description" content="Resize and crop wallpapers and social images to perfect dimensions in one click." />
+    <meta name="twitter:image" content="https://nagenxp.github.io/WallFit/assets/theme/WallFit.png" />
+
+    <link rel="stylesheet" href="assets/theme/main.css"/>
+    <script type="module" src="assets/interactions/main.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div>
+          <div class="brand">WallFit</div>
+          <p class="tagline">Find the perfect canvas size in one click.</p>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="panel controls">
+          <div class="file-meta">
+            <div class="meta-row">
+              <span>File</span>
+              <strong id="fileName">No file loaded</strong>
+            </div>
+            <div class="meta-row">
+              <span>Original size</span>
+              <strong id="originalSize">--</strong>
+            </div>
+          </div>
+
+          <div class="section-title" id="presetSection">Choose a Resolution</div>
+          <div class="preset-row">
+            <div class="preset-group desktop">
+              <label class="preset-group-title" for="desktopPreset">Desktop Screen</label>
+              <select class="preset-select" id="desktopPreset">
+                <option value="">Choose size</option>
+                <option value="1920x1080" data-w="1920" data-h="1080">1920 × 1080 · Full HD</option>
+                <option value="3840x2160" data-w="3840" data-h="2160">3840 × 2160 · 4K UHD</option>
+                <option value="4480x2520" data-w="4480" data-h="2520">4480 × 2520 · 4.5K</option>
+                <option value="5120x2880" data-w="5120" data-h="2880">5120 × 2880 · 5K</option>
+              </select>
+            </div>
+            <div class="preset-group mobile">
+              <label class="preset-group-title" for="mobilePreset">Mobile Screen</label>
+              <select class="preset-select" id="mobilePreset">
+                <option value="">Choose size</option>
+                <option value="1290x2796" data-w="1290" data-h="2796">1290 × 2796 · iPhone</option>
+                <option value="1440x3088" data-w="1440" data-h="3088">1440 × 3088 · Samsung</option>
+                <option value="1344x2992" data-w="1344" data-h="2992">1344 × 2992 · Google Pixel</option>
+                <option value="1080x2412" data-w="1080" data-h="2412">1080 × 2412 · OnePlus</option>
+                <option value="1260x2800" data-w="1260" data-h="2800">1260 × 2800 · vivo</option>
+              </select>
+            </div>
+            <div class="preset-group social">
+              <label class="preset-group-title" for="socialPreset">Social Media</label>
+              <select class="preset-select" id="socialPreset">
+                <option value="">Choose size</option>
+                <option value="1080x1080" data-w="1080" data-h="1080">Instagram Post (Square) · 1080 × 1080</option>
+                <option value="1080x1350" data-w="1080" data-h="1350">Instagram Post (Portrait) · 1080 × 1350</option>
+                <option value="1080x566" data-w="1080" data-h="566">Instagram Post (Landscape) · 1080 × 566</option>
+                <option value="1080x1920" data-w="1080" data-h="1920">Stories (Instagram &amp; Facebook) · 1080 × 1920</option>
+                <option value="1200x630" data-w="1200" data-h="630">Facebook Post · 1200 × 630</option>
+                <option value="820x312" data-w="820" data-h="312">Facebook Cover · 820 × 312</option>
+                <option value="1200x675" data-w="1200" data-h="675">X Post · 1200 × 675</option>
+                <option value="1500x500" data-w="1500" data-h="500">X Header · 1500 × 500</option>
+                <option value="1200x627" data-w="1200" data-h="627">LinkedIn Post · 1200 × 627</option>
+                <option value="1584x396" data-w="1584" data-h="396">LinkedIn Cover · 1584 × 396</option>
+                <option value="1280x720" data-w="1280" data-h="720">YouTube Thumbnail · 1280 × 720</option>
+                <option value="2560x1440" data-w="2560" data-h="1440" data-template="youtube-banner">YouTube Banner · 2560 × 1440</option>
+                <option value="1000x1500" data-w="1000" data-h="1500">Pinterest Pin · 1000 × 1500</option>
+              </select>
+            </div>
+            <div class="preset-group aspect">
+              <label class="preset-group-title" for="aspectPreset">Aspect Ratios</label>
+              <select class="preset-select" id="aspectPreset">
+                <option value="">Choose ratio</option>
+                <option value="1920x1080" data-w="1920" data-h="1080">16:9 (Widescreen)</option>
+                <option value="1920x1200" data-w="1920" data-h="1200">16:10 (Laptop)</option>
+                <option value="1600x1200" data-w="1600" data-h="1200">4:3 (Standard)</option>
+                <option value="1800x1200" data-w="1800" data-h="1200">3:2 (Classic Photo)</option>
+                <option value="1080x1080" data-w="1080" data-h="1080">1:1 (Square)</option>
+                <option value="1080x1350" data-w="1080" data-h="1350">4:5 (Portrait)</option>
+                <option value="1080x1920" data-w="1080" data-h="1920">9:16 (Vertical Screen)</option>
+                <option value="2560x1080" data-w="2560" data-h="1080">21:9 (Ultrawide)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="custom-size-row">
+            <label class="preset-group-title" for="customWidth">Custom size</label>
+            <div class="custom-size-controls">
+              <input
+                class="custom-size-input"
+                id="customWidth"
+                type="number"
+                min="1"
+                step="1"
+                inputmode="numeric"
+                placeholder="Width"
+                aria-label="Custom width in pixels"
+              />
+              <span class="custom-size-separator" aria-hidden="true">×</span>
+              <input
+                class="custom-size-input"
+                id="customHeight"
+                type="number"
+                min="1"
+                step="1"
+                inputmode="numeric"
+                placeholder="Height"
+                aria-label="Custom height in pixels"
+              />
+              <button class="ghost custom-size-apply" id="applyCustomSizeBtn" type="button">Apply</button>
+            </div>
+          </div>
+
+          <span class="status preview-status controls-status" id="statusText" aria-live="polite"></span>
+
+          <div class="section-title output-title">
+            <span class="section-title-text">Output</span>
+          </div>
+
+          <div class="file-meta">
+            <div class="meta-row">
+              <span>Estimated size</span>
+              <strong id="estimatedSize">--</strong>
+            </div>
+            <div class="meta-row">
+              <span>Output dimensions</span>
+              <strong id="outputDims">--</strong>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="cta" id="downloadBtn" type="button" disabled>Download</button>
+            <button class="ghost" id="clearBtn" type="button" disabled>Clear</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+
+          <div class="controls-footer">
+            <div class="footer-brand">Malaysia தமிழர்</div>
+            <a class="badge badge-link" href="https://www.youtube.com/@NagenXP/?sub_confirmation=1" target="_blank" rel="noopener">Made by Nagendran ↗</a>
+          </div>
+        </section>
+
+        <section class="panel previews">
+          <div class="preview-header">
+            <span class="preview-header-title">Preview</span>
+            <div class="preview-label" id="previewLabel">Original</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-block">
+              <div class="preview-image dropzone" id="dropzone">
+                <input id="fileInput" type="file" accept="image/*" />
+                <div class="placeholder dropzone-content" id="previewPlaceholder">
+                  <div class="dropzone-title" id="dropzoneTitle">Upload your image</div>
+                  <div class="dropzone-subtitle" id="dropzoneSubtitle">Click Browse</div>
+                  <button class="ghost" id="browseBtn" type="button">Browse</button>
+                </div>
+                <img id="previewImage" alt="Preview" />
+                <div class="crop-overlay" id="cropOverlay" aria-hidden="true">
+                  <div class="crop-window" id="cropWindow">
+                    <div class="crop-template crop-template-youtube" id="youtubeBannerTemplate" aria-hidden="true">
+                      <div class="crop-template-yt-tv-label">TV · 2560 × 1440</div>
+                      <div class="crop-template-yt-band-labels">
+                        <div class="crop-template-yt-desktop-label crop-template-yt-desktop-label-left">
+                          <span class="crop-template-yt-desktop-label-title">Desktop / Mobile</span>
+                          <span class="crop-template-yt-desktop-label-size">2560 × 338</span>
+                        </div>
+                        <div class="crop-template-yt-safe-label">
+                          <span class="crop-template-yt-safe-label-title">Logo Safe Area</span>
+                          <span class="crop-template-yt-safe-label-size">1235 × 338</span>
+                        </div>
+                        <div class="crop-template-yt-desktop-label crop-template-yt-desktop-label-right">
+                          <span class="crop-template-yt-desktop-label-title">Desktop / Mobile</span>
+                          <span class="crop-template-yt-desktop-label-size">2560 × 338</span>
+                        </div>
+                      </div>
+                      <div class="crop-template-yt-desktop-band" aria-hidden="true"></div>
+                      <div class="crop-template-yt-safe" aria-hidden="true"></div>
+                    </div>
+                    <span class="crop-handle crop-handle-n" data-handle="n" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-e" data-handle="e" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-s" data-handle="s" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-w" data-handle="w" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-ne" data-handle="ne" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-se" data-handle="se" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-sw" data-handle="sw" aria-hidden="true"></span>
+                    <span class="crop-handle crop-handle-nw" data-handle="nw" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="loading" id="loadingState" role="status" aria-live="polite" aria-label="Processing image">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </body>
+</html>
