@@ -102,6 +102,28 @@
     min-height: 180px;
   }
 
+  .crop-template-yt-tv-label {
+    font-size: clamp(10px, 2.6vw, 14px);
+    line-height: 1.25;
+  }
+
+  .crop-template-yt-band-labels {
+    top: calc(var(--yt-band-top) + var(--yt-band-height));
+    transform: translateY(clamp(3px, 1.4vw, 8px));
+  }
+
+  .crop-template-yt-desktop-label,
+  .crop-template-yt-safe-label {
+    font-size: clamp(9px, 2.3vw, 13px);
+    line-height: 1.25;
+    padding: 0 6px;
+  }
+
+  .crop-template-yt-desktop-label-size,
+  .crop-template-yt-safe-label-size {
+    font-size: 1em;
+  }
+
   .dropzone {
     padding: 16px;
     gap: 12px;
