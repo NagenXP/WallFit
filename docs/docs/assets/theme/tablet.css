@@ -1,0 +1,239 @@
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+  :root {
+    --panel-height: clamp(560px, 74vh, 760px);
+    --preview-card-height: clamp(440px, 62vh, 620px);
+  }
+
+  .app {
+    width: min(1280px, 96vw);
+    margin: 20px auto 40px;
+    padding: 0 0 28px;
+  }
+
+  .app-header {
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .brand {
+    font-size: 1.8rem;
+  }
+
+  .app-main {
+    grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .controls,
+  .previews {
+    height: var(--panel-height);
+  }
+
+  .controls {
+    overflow: auto;
+  }
+
+  .previews {
+    align-self: stretch;
+  }
+
+  .preview-card {
+    height: var(--preview-card-height);
+  }
+
+  .preview-image {
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+  }
+
+  .action-row .ghost {
+    flex: 1 1 100%;
+  }
+
+  .dropzone-title {
+    font-size: 1rem;
+  }
+
+  .dropzone-subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .ghost:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: none;
+  }
+
+  .cta:not(:disabled):hover {
+    transform: none;
+  }
+
+  .crop-handle:hover {
+    transform: none;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  :root {
+    --panel-height: clamp(560px, 74vh, 760px);
+  }
+
+  .app {
+    width: min(960px, 94vw);
+    margin: 16px auto 32px;
+    padding: 0 0 24px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .app-main {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .section-title, .preset-select, 
+  .dropzone-title, .dropzone-subtitle,
+  .custom-size-input, .cta, .ghost,
+  .footer-brand, .badge-link {
+    font-size: 1.2rem;
+  }
+
+  .preset-group-title {
+    font-size: 1rem;
+  }
+
+  .previews {
+    order: -1;
+    height: auto;
+  }
+
+  .controls {
+    height: auto;
+  }
+
+  .preview-card {
+    height: auto;
+    order: 1;
+  }
+
+  .preview-block {
+    justify-content: flex-start;
+    flex: 0 0 auto;
+  }
+
+  .preview-header {
+    order: 2;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "title label";
+    align-items: center;
+    row-gap: 0;
+    column-gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .preview-header-title {
+    grid-area: title;
+  }
+
+  .preview-status {
+    font-size: 1.1rem;
+  }
+
+  .preview-image {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .crop-template-yt-tv-label {
+    font-size: clamp(13px, 1.75vw, 19px);
+    line-height: 1.25;
+  }
+
+  .crop-template-yt-band-labels {
+    top: calc(var(--yt-band-top) - clamp(34px, 4.3vw, 50px));
+  }
+
+  .crop-template-yt-desktop-label,
+  .crop-template-yt-safe-label {
+    font-size: clamp(12px, 1.65vw, 18px);
+    line-height: 1.25;
+    padding: 0 8px;
+  }
+
+  .crop-template-yt-desktop-label-size,
+  .crop-template-yt-safe-label-size {
+    font-size: 1.02em;
+  }
+
+  .meta-row {
+    font-size: 1.1rem;
+  }
+
+  .custom-size-controls {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .custom-size-apply {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .controls-status {
+    order: 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .preview-label {
+    grid-area: label;
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .action-row {
+    flex-wrap: wrap;
+  }
+
+  .action-row .cta {
+    flex: 1 1 100%;
+  }
+
+  .action-row .ghost {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .ghost:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: none;
+  }
+
+  .cta:not(:disabled):hover {
+    transform: none;
+  }
+
+  .crop-handle:hover {
+    transform: none;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+}
