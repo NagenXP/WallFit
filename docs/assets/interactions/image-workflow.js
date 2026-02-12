@@ -3,7 +3,6 @@ import {
   FIXED_FORMAT,
   FIXED_QUALITY,
   MAX_FILE_SIZE,
-  MAX_UPLOAD_PIXELS,
   MIN_QUALITY,
   YOUTUBE_BANNER_TEMPLATE,
   downloadBtn,
@@ -29,6 +28,7 @@ import { clampSize, cleanupSource, getTargetSize, resetOutput } from "./controls
 let processTimer = null;
 const MOBILE_RISKY_DESKTOP_PRESETS = new Set(["3840x2160", "4480x2520", "5120x2880"]);
 const MOBILE_HIGH_RES_WARNING = "High resolution presets (4K/4.5K/5K) may take longer to process on mobile devices.";
+const MAX_FILE_SIZE_MB = Math.round(MAX_FILE_SIZE / (1024 * 1024));
 
 export function scheduleProcess() {
   if (!state.source) {
@@ -116,12 +116,12 @@ export async function processImage() {
         attempt += 1;
       }
       if (quality < FIXED_QUALITY) {
-        warnings.push(`Quality adjusted to ${Math.round(quality * 100)}% to stay under 15 MB.`);
+        warnings.push(`Quality adjusted to ${Math.round(quality * 100)}% to stay under ${MAX_FILE_SIZE_MB} MB.`);
       }
     }
 
     if (blob.size > MAX_FILE_SIZE) {
-      setStatus("Output exceeds 15 MB at minimum quality. Try a smaller resolution.", "error");
+      setStatus(`Output exceeds ${MAX_FILE_SIZE_MB} MB at minimum quality. Try a smaller resolution.`, "error");
       resetOutput();
       return;
     }
@@ -167,7 +167,7 @@ export async function handleFile(file) {
     return;
   }
   if (file.size > MAX_FILE_SIZE) {
-    setStatus("File is larger than 15 MB. Please choose a smaller image.", "error");
+    setStatus(`File is larger than ${MAX_FILE_SIZE_MB} MB. Please choose a smaller image.`, "error");
     fileInput.value = "";
     return;
   }
@@ -207,20 +207,6 @@ export async function handleFile(file) {
       state.sourceType = "image";
       state.width = img.width;
       state.height = img.height;
-    }
-
-    const sourcePixels = state.width * state.height;
-    if (sourcePixels > MAX_UPLOAD_PIXELS) {
-      cleanupSource();
-      state.file = null;
-      state.width = 0;
-      state.height = 0;
-      fileInput.value = "";
-      fileName.textContent = "No file loaded";
-      originalSize.textContent = "--";
-      resetOutput();
-      setStatus("Image resolution is too high. Try below 5K (max 5120 × 2880).", "error");
-      return;
     }
 
     if (state.lastPreset) {

@@ -1,8 +1,4 @@
 import {
-  DESKTOP_MAX_DIM,
-  DESKTOP_MAX_PIXELS,
-  MOBILE_MAX_DIM,
-  MOBILE_MAX_PIXELS,
   applyCustomSizeBtn,
   clearBtn,
   customHeightInput,
@@ -17,8 +13,9 @@ import {
   presetSelects,
   previewImage,
   previewPlaceholder,
+  swapCustomSizeBtn,
 } from "./main.js";
-import { isMobileViewport, setStatus, state } from "./app-state.js";
+import { setStatus, state } from "./app-state.js";
 import {
   getCropSourceRect,
   resetCropToFullSource,
@@ -148,7 +145,7 @@ export function clearCustomSizeInputs() {
 }
 
 export function setCustomSizeDisabled(isDisabled) {
-  [customWidthInput, customHeightInput, applyCustomSizeBtn]
+  [customWidthInput, customHeightInput, swapCustomSizeBtn, applyCustomSizeBtn]
     .filter(Boolean)
     .forEach((control) => {
       control.disabled = Boolean(isDisabled);
@@ -157,25 +154,7 @@ export function setCustomSizeDisabled(isDisabled) {
 }
 
 export function clampSize(width, height) {
-  const mobileViewport = isMobileViewport();
-  if (mobileViewport) {
-    return { width, height, warning: "" };
-  }
-  const maxPixels = mobileViewport ? MOBILE_MAX_PIXELS : DESKTOP_MAX_PIXELS;
-  const maxDim = mobileViewport ? MOBILE_MAX_DIM : DESKTOP_MAX_DIM;
-  const pixelRatio = Math.sqrt(maxPixels / (width * height));
-  let scale = Math.min(1, maxDim / width, maxDim / height, pixelRatio);
-  if (!Number.isFinite(scale) || scale <= 0) {
-    scale = 1;
-  }
-
-  if (scale >= 1) {
-    return { width, height, warning: "" };
-  }
-
-  const safeWidth = Math.max(1, Math.floor(width * scale));
-  const safeHeight = Math.max(1, Math.floor(height * scale));
-  return { width: safeWidth, height: safeHeight, warning: "" };
+  return { width, height, warning: "" };
 }
 
 export function getTargetSize() {

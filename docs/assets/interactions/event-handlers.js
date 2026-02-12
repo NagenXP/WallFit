@@ -11,6 +11,7 @@ import {
   presetSelects,
   previewImage,
   resetBtn,
+  swapCustomSizeBtn,
 } from "./main.js";
 import { isDropzoneLocked, isMobileViewport, state, syncDropzoneCopy } from "./app-state.js";
 import { refreshPreviewBoxSize } from "./crop-preview.js";
@@ -23,7 +24,7 @@ import {
   resetAll,
 } from "./controls-utils.js";
 import { handleFile } from "./image-workflow.js";
-import { applyCustomSize, getOutputDimensions, handlePresetSelection } from "./presets.js";
+import { applyCustomSize, getOutputDimensions, handlePresetSelection, swapCustomSize } from "./presets.js";
 
 function setupDragAndDrop() {
   if (isMobileViewport()) {
@@ -104,6 +105,13 @@ presetSelects.forEach((presetSelect) => {
 if (applyCustomSizeBtn) {
   applyCustomSizeBtn.addEventListener("click", () => {
     applyCustomSize();
+  });
+}
+
+if (swapCustomSizeBtn) {
+  swapCustomSizeBtn.addEventListener("click", () => {
+    swapCustomSize();
+    updateClearButtonState();
   });
 }
 

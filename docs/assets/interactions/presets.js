@@ -1,7 +1,5 @@
 import {
   DEFAULT_CROP_INSET_RATIO,
-  DESKTOP_MAX_DIM,
-  DESKTOP_MAX_PIXELS,
   YOUTUBE_BANNER_TEMPLATE,
   customHeightInput,
   customWidthInput,
@@ -90,16 +88,6 @@ export function applyCustomSize() {
     return;
   }
 
-  if (targetWidth > DESKTOP_MAX_DIM || targetHeight > DESKTOP_MAX_DIM) {
-    setStatus(`Custom resolution cannot exceed ${DESKTOP_MAX_DIM}px per side.`, "error");
-    return;
-  }
-
-  if (targetWidth * targetHeight > DESKTOP_MAX_PIXELS) {
-    setStatus("Custom resolution is too high. Keep it below 5K (max 5120 × 2880).", "error");
-    return;
-  }
-
   customWidthInput.value = String(targetWidth);
   customHeightInput.value = String(targetHeight);
   presetSelects.forEach((presetSelect) => {
@@ -116,6 +104,24 @@ export function applyCustomSize() {
   showOriginalPreview();
 
   scheduleProcess();
+}
+
+export function swapCustomSize() {
+  if (!customWidthInput || !customHeightInput) {
+    return;
+  }
+
+  const widthRaw = customWidthInput.value.trim();
+  const heightRaw = customHeightInput.value.trim();
+  customWidthInput.value = heightRaw;
+  customHeightInput.value = widthRaw;
+
+  if (!customWidthInput.value.trim() || !customHeightInput.value.trim()) {
+    setStatus("");
+    return;
+  }
+
+  applyCustomSize();
 }
 
 export function getOutputDimensions() {
